@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="System">
+	<setting label="steam_id" type="text" id="steam_id" default="" />
+	<setting label="steam_wine" type="folder" id="steam_wine" default="" />	
+	</category>	
+</settings>

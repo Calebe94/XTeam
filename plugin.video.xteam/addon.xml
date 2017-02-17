@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="plugin.video.xteam" name="Xteam" version="0.0.1" provider-name="Calebe94">
+<requires>
+  <import addon="xbmc.python" version="2.6.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource" library="main.py">
+  <provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+  <summary lang="en">A Steam Client to KODI</summary>
+  <description lang="en">This addon will launch your SteamOS and Wine Games.</description>
+  <disclaimer lang="en">Provided by Calebe94 and Distributed by GPL 3.0.</disclaimer>
+  <assets>
+    <icon>resources\icon.png</icon>
+    <fanart>resources\fanart.jpg</fanart>
+    <screenshot>resources\screenshot-01.jpg</screenshot>
+    <screenshot>resources\screenshot-02.jpg</screenshot>
+    <screenshot>resources\screenshot-03.jpg</screenshot>    
+  </assets>
+  <news>In Development</news>
+</extension>
+<platform>linux</platform>
+<license>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</license>  
+</addon>
