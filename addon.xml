@@ -11,14 +11,14 @@
   <description lang="en">This addon will launch your SteamOS and Wine Games.</description>
   <disclaimer lang="en">Provided by Calebe94 and Distributed by GPL 3.0.</disclaimer>
   <assets>
-    <icon>resources\icon.png</icon>
-    <fanart>resources\fanart.jpg</fanart>
-    <screenshot>resources\screenshot-01.jpg</screenshot>
-    <screenshot>resources\screenshot-02.jpg</screenshot>
-    <screenshot>resources\screenshot-03.jpg</screenshot>    
+    <icon>resources\media\icon.png</icon>
+    <fanart>resources\media\fanart.jpg</fanart>
+    <screenshot>resources\media\screenshot-01.jpg</screenshot>
+    <screenshot>resources\media\screenshot-02.jpg</screenshot>
+    <screenshot>resources\media\screenshot-03.jpg</screenshot>
   </assets>
   <news>In Development</news>
 </extension>
 <platform>linux</platform>
-<license>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</license>  
+<license>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</license>
 </addon>
