@@ -9,13 +9,6 @@ else:
     from urllib.request import urlopen
 
 class SteamAPI(object):
-    WINE_PATH=str()
-    LINUX_PATH=str()
-    PUBLIC_ID=str()
-    #GET_APP_INFO = "https://steampics-mckay.rhcloud.com/info?apps=200900&prettyprint=1"
-    ALL_GAMES = 'http://api.steampowered.com/ISteamApps/GetAppList/v0002/?format=xml'
-    LINUX_GAMES = 'https://raw.githubusercontent.com/SteamDatabase/SteamLinux/master/GAMES.json'
-
     """
         library Dictionary works like this: library[state][platform][appid][keys]
         #STATE:
@@ -33,17 +26,23 @@ class SteamAPI(object):
         installdir: game's installed dir
         executable: game's executable
         controller_support: return if the game's have gamepad support
-        oslist: show the platforms 
+        oslist: show the platforms
         images: list of screenshots
         movies: list of movies
         description: short description about the game
-    """    
+    """
+    WINE_PATH=str()
+    LINUX_PATH=str()
+    PUBLIC_ID=str()
+    #GET_APP_INFO = "https://steampics-mckay.rhcloud.com/info?apps=200900&prettyprint=1"
+    ALL_GAMES = 'http://api.steampowered.com/ISteamApps/GetAppList/v0002/?format=xml'
+    LINUX_GAMES = 'https://raw.githubusercontent.com/SteamDatabase/SteamLinux/master/GAMES.json'
     LIBRARY=dict()
     profilefolder=str()
-    
+
     LIBRARY['installed'] = dict()
     LIBRARY['library'] = dict()
-    
+
     def __init__(self,wine,public_id,profiles_folder):
         #Verification is did outside
         self.profilefolder = profiles_folder
@@ -52,7 +51,7 @@ class SteamAPI(object):
         self.PUBLIC_ID=public_id
         self.LIBRARY["installed"] = self.getInstalledGames()
         self.LIBRARY["library"] = self.getOwnedGames()
-        
+
     def linux(self,command):
         logfile = open(self.profilefolder+"/_linux_.log","a")
         pid = os.fork()
@@ -68,7 +67,7 @@ class SteamAPI(object):
             os.system("steam -applaunch %s -silent"%command)
             time.sleep(5)
         return str(self.LIBRARY['installed']['linux'][command]['executable'])
-            
+
     def wine(self,command):
         logfile = open(self.profilefolder+"/_wine_.log","a")
         pid = os.fork()
@@ -84,7 +83,7 @@ class SteamAPI(object):
             os.system("wine %sSteam.exe -applaunch %s -silent"%(self.path2UNIX(self.WINE_PATH),command))
             time.sleep(5)
         return self.LIBRARY['installed']['windows'][command]['executable']
-        
+
     def getInstalledGames(self):
         client_wine = self.WINE_PATH + "steamapps/"
         client_linux = self.LINUX_PATH + "steamapps/"
@@ -97,23 +96,22 @@ class SteamAPI(object):
             AUX = dict()
             AUX['linux']=dict()
             AUX['windows']=dict()
-        
+
             for client in my_list:
                 for file in os.listdir(my_list[client]):
                     if file.endswith(".acf"):
                         acf=AcfParser.parse_acf(my_list[client]+file)
                         AUX[client][acf['AppState']['appid']] = self.getInfo(client,acf['AppState']['appid'])
                 with open(file_installed, 'w') as fp:
-                    json.dump(AUX, fp) 
+                    json.dump(AUX, fp)
         return AUX
 
     def getOwnedGames(self):
-        
         owned_games = "http://steamcommunity.com/id/%s/games?tab=all&xml=1"%self.PUBLIC_ID
         tree=ET.ElementTree(file=urlopen(owned_games))
         root = tree.getroot()
         Owned = dict()
-        
+
         for game in root.iter('game'):
             gameID = game.find('appID').text
             Owned[gameID]=dict()
@@ -122,7 +120,7 @@ class SteamAPI(object):
             Owned[gameID]['logo'] = game.find('logo').text
             Owned[gameID]['platform'] = self.isInstalled(gameID)
         return Owned
-        
+
     def path2UNIX(self,path):
         aux=str()
         for index in range(0,len(path)):
@@ -133,22 +131,22 @@ class SteamAPI(object):
             aux=aux+path[index]
             index=index+1
         return aux
-    
+
     def isInstalled(self,gameid):
         return_list = []
-        
+
         for installed in list(self.LIBRARY['installed']['windows'].keys()):
             if gameid == installed:
                 return_list=return_list + [str(self.LIBRARY['installed']['windows'][gameid]['platform'])]
         for installed in list(self.LIBRARY['installed']['linux'].keys()):
             if gameid == installed:
                 return_list=return_list + [str(self.LIBRARY['installed']['linux'][gameid]['platform'])]
-                
+
         if not return_list:
             return "not installed"
         else:
             return return_list
-    
+
     def getInfo(self,platform,appID):
         # Strings to be used in this function
         name = str()
@@ -161,13 +159,13 @@ class SteamAPI(object):
         gameID = str()
         # Dictionary to be used
         aux_dict = dict()
-        
+
         controller_support = "None"
-        
+
         url = "https://steampics-mckay.rhcloud.com/info?apps=%s&prettyprint=1"%appID
         response=urlopen(url)
         data = json.loads(response.read())
-        
+
         name = data['apps'][appID]['common']['name']
         gameID = data['apps'][appID]['appid']
         logo = "http://cdn.akamai.steamstatic.com/steam/apps/%s/header.jpg?t=1466791207"%(appID)
@@ -177,7 +175,7 @@ class SteamAPI(object):
         for key in common_keys:
             if "controller_support" in key:
                 controller_support = data['apps'][appID]['common']['controller_support']
-        
+
         installdir = data['apps'][appID]['config']['installdir']
         keys=list(data['apps'][appID]['config']['launch'].keys())
         if 'library' not in platform:
@@ -197,7 +195,7 @@ class SteamAPI(object):
         aux_dict['controller_support'] = controller_support
         aux_dict['oslist'] = oslist
         aux_dict['platform'] = platform
-        
+
         short_description=str()
         images_url = "http://store.steampowered.com/api/appdetails/?appids=%s&format=json"%appID
         image_response=urlopen(images_url)
@@ -206,36 +204,36 @@ class SteamAPI(object):
         short_description = image_data[appID]['data']['short_description']
         my_images = list(image_data[appID]['data']['screenshots'])
         my_movies = list(image_data[appID]['data']['movies'])
-        
+
         images_list = list()
         for index in range(0,len(my_images)):
             images_list.append(my_images[index]['path_thumbnail'])
-            
+
         aux_dict['images'] = str(",".join(images_list))
-        
+
         movies_list = list()
         for index in range(0,len(my_movies)):
             movies_list.append(my_movies[index]['webm']['max'])
-        
+
         aux_dict['movies'] = str(",".join(movies_list))
         aux_dict['description'] = short_description
-        
+
         return aux_dict
 
 def pgrep(pattern):
-     """
+    """
     Return the pattern pid
     """
     pid=str()
     process = Popen(['pgrep',pattern],stdout=PIPE,stderr=PIPE)
     out = str(process.communicate()).split()
-    
+
     if out is not None:
         for digit in out[0]:
             if digit.isdigit():
                 pid=pid+digit
     return pid
-
+"""
 wines = "/home/calebe945/PlayOnLinux's virtual drives/calebe945/drive_c/Program Files/Steam/"
 if __name__ == '__main__':
     steam = SteamAPI(wines,"calebenovequatro","/home/calebe945/Projetos")
@@ -248,3 +246,4 @@ if __name__ == '__main__':
     #gameID = str(steam.linux("200900"))
     #gameID = steam.wine('280790')
     #print(gameID)
+"""
