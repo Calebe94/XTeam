@@ -2,7 +2,7 @@ import SteamAPI
 from urlparse import parse_qsl
 from urllib import urlencode
 import xbmcgui,xbmcplugin,xbmcaddon,xbmc,xbmcvfs
-import os
+import os, subprocess
 
 _url = sys.argv[0]
 _handle = int(sys.argv[1])
@@ -72,6 +72,9 @@ def list_games(steam, categories):
         xbmcplugin.addDirectoryItem(_handle,format_url(action='play',category=categories,platform=games['platform'][game]['platform'],game=games['appID'][game]['appID']),list_item,False)
     xbmcplugin.addSortMethod(_handle,xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
     xbmcplugin.endOfDirectory(_handle)
+
+def which_kernel():
+    kernel = subprocess.check_output('uname')
 
 def main(paramstring):
     params = dict(parse_qsl(paramstring))

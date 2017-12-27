@@ -1,6 +1,8 @@
 # XTeam
 
-![XTeam](https://github.com/Calebe94/XTeam/blob/master/resources/fanart.jpg?raw=true)
+![XTeam-abezao](https://github.com/Calebe94/XTeam/blob/master/resources/media/fanart.jpg?raw=true)
+
+Icon by: [Abezão]()
 
 This add-on is under development, its purpose is to bring full control over your Steam games inside Kodi environment. Its design is simple and follows the style of the theme you have chosen.
 
@@ -8,19 +10,19 @@ This add-on is under development, its purpose is to bring full control over your
 
 First of all, you will need to download this repository in ".zip" format, as you can see in the image below.
 
-![installation-1](https://github.com/Calebe94/XTeam/blob/master/images/installation/installation-1.png?raw=true)
+![installation-1](https://i.imgur.com/Vtx8nZr.png)
 
 Then, you need to verify if your Kodi has permission to add Add-ons from unknown sources. To do that you'll need to go to System, Settings/System, Add-ons, then check if the Unknown Sources buttons are enabled, if don't, enable it.
 
-![installation-2](https://github.com/Calebe94/XTeam/blob/master/images/installation/installation-2.png?raw=true)
+![installation-2](https://i.imgur.com/4TFSA0A.png)
 
 When you enable the button you'll popup window will show, click on yes to proceed.
 
-![installation-3](https://github.com/Calebe94/XTeam/blob/master/images/installation/installation-3.png?raw=true)
+![installation-3](https://i.imgur.com/l5813YD.png)
 
 After that, you'll need to install XTeam, to do so, go to your Kodi home screen, then go to Add-ons, click in the Box right above, click on "Install from ZIP File, and then select the zip file you have downloaded in the first step.
 
-![installation-4](https://github.com/Calebe94/XTeam/blob/master/images/installation/installation-4.png?raw=true)
+![installation-4](https://i.imgur.com/uJOWoDS.png)
 
 ## Usage
 
