@@ -1,4 +1,4 @@
-# XTeam
+# Xteam
 
 ![XTeam-abezao](https://github.com/Calebe94/XTeam/blob/master/resources/media/fanart.jpg?raw=true)
 
@@ -10,19 +10,19 @@ This add-on is under development, its purpose is to bring full control over your
 
 First of all, you will need to download this repository in ".zip" format, as you can see in the image below.
 
-![installation-1](https://i.imgur.com/Vtx8nZr.png)
+![installation-1](https://imgur.com/8cayYeA.png)
 
 Then, you need to verify if your Kodi has permission to add Add-ons from unknown sources. To do that you'll need to go to System, Settings/System, Add-ons, then check if the Unknown Sources buttons are enabled, if don't, enable it.
 
-![installation-2](https://i.imgur.com/4TFSA0A.png)
+![installation-2](https://imgur.com/zbSrQ5w.png)
 
 When you enable the button you'll popup window will show, click on yes to proceed.
 
-![installation-3](https://i.imgur.com/l5813YD.png)
+![installation-3](https://imgur.com/JKmhIoA.png)
 
 After that, you'll need to install XTeam, to do so, go to your Kodi home screen, then go to Add-ons, click in the Box right above, click on "Install from ZIP File, and then select the zip file you have downloaded in the first step.
 
-![installation-4](https://i.imgur.com/uJOWoDS.png)
+![installation-4](https://imgur.com/T208kVh.png)
 
 ## Usage
 
@@ -63,7 +63,7 @@ The links below served as a reference for the development of this project.
 
 ---
 
-### Questions on Stack Overflows:
+### Questions on Stack Overflow:
 * [Stack Overflow - Description: Get all Thumbnails by appID](http://stackoverflow.com/questions/26505768/looking-for-a-way-to-grab-all-steam-header-images)
 * [Utilization of Steam APIs and web-scraping](http://codereview.stackexchange.com/questions/68132/utilization-of-steam-apis-and-web-scraping)
 * [Steam WebAPI AuthenticateUser](http://stackoverflow.com/questions/37775604/steam-webapi-authenticateuser)
